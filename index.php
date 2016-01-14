@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -39,7 +39,7 @@
             </ul>
         </div>
         <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-fluid center-block" src="me.jpg" height="75%" width="75%" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid center-block" src="me.jpg" height="45%" width="45%" alt="Generic placeholder image">
         </div>
     </div>
 </div>
