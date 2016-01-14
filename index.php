@@ -40,7 +40,7 @@
 
             <p class="lead">Experience</p>
             <ul>
-            	<li>Cirris Systems - Software Engineer (Starting May 2015)</li>
+            	<li>Cirris Systems - Software Engineer (Starting May 2016)</li>
             	<li>Object Oriented Programming Tutor (2015-current)</li>
             	<li>Hughes Network Systems - Software Engineering Intern - Apr 2015-Aug 2015</li>
             </ul>
