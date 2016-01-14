@@ -19,7 +19,7 @@
 		}
 	</style>
 	<body>
-		<h2>Snake with Canvas & jQuery</h2>
+		<h2>Snake!!</h2>
 		<div id="main">
 			<canvas id="myCanvas" width="300" height="300" style="border:1px solid #c3c3c3;">
 			Your browser does not support the HTML5 canvas tag.
@@ -112,15 +112,8 @@
 						if (doOnceOnDeath) {
 							doOnceOnDeath = false;
 
-							// if ($.browser.mozilla) {
-								var audio = new Audio('gameover.ogg');
-								audio.play();	
-							// }
-							// else {
-							// 	var audio = new Audio('gameover.mp3');
-							// 	audio.play();		
-							// }
-							
+							var audio = new Audio('gameover.ogg');
+							audio.play();						
 						}
 						return;
 					}
@@ -141,38 +134,6 @@
 					<li>Use the Space Bar to reset the game</li>
 				</ul>
 				<p>Enjoy!</p>
-				<p>There seems to be a bug when you get a certain number of apples, not sure what's causing this :(</p>
 			</div>
 	</body>
 </html>
-
-
-
-<!-- 
-<script>
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-var num = 0;
-
-setInterval(function() {
-	if (num === 0) {
-		ctx.fillStyle = "#FF0000";
-		ctx.fillRect(0,0,150,75);
-
-		num++;
-	}
-	else if (num === 1) {
-		ctx.fillStyle = "#00FF00";
-		ctx.fillRect(0,0,150,75);
-
-		num++;
-	}
-	else if (num === 2) {
-		ctx.fillStyle = "#0000FF";
-		ctx.fillRect(0,0,150,75);
-
-		num = 0;
-	}
-}, 500);		
-</script>
- -->
