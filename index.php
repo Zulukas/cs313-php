@@ -34,12 +34,19 @@
             <ul>
             	<li>Embedded Systems</li>
             	<li>Network Architecture</li>
-            	<li>Code Monkey</li>
-            	<li>Hardware Nerd</li>
+            	<li>C++ Enthusiast</li>
+            	<li>CSS Hater</li>
+            </ul>
+
+            <p class="lead">Experience</p>
+            <ul>
+            	<li>Cirris Systems - Software Engineer (Starting May 2015)</li>
+            	<li>Object Oriented Programming Tutor (2015-current)</li>
+            	<li>Hughes Network Systems - Software Engineering Intern - Apr 2015-Aug 2015</li>
             </ul>
         </div>
         <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-fluid center-block" src="me.jpg" height="35%" width="35%" alt="Generic placeholder image">
+            <a href="/snake.html"><img class="featurette-image img-fluid center-block" src="me.jpg" height="35%" width="35%" alt="Generic placeholder image"></a>
         </div>
     </div>
 </div>
