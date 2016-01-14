@@ -29,11 +29,17 @@
 
     <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">About me.</h2>
+            <p class="lead">Computer Engineer</p>
+            <ul>
+            	<li>Embedded Systems</li>
+            	<li>Network Architecture</li>
+            	<li>Code Monkey</li>
+            	<li>Hardware Nerd</li>
+            </ul>
         </div>
         <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-fluid center-block" src="me.jpg" width="50%" height="50%" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid center-block" src="me.jpg" height="75%" width="75%" alt="Generic placeholder image">
         </div>
     </div>
 </div>
