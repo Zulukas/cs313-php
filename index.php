@@ -28,6 +28,9 @@
 	<hr class="featurette-divider">
 
     <div class="row featurette">
+        <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-fluid center-block" src="me.jpg" height="35%" width="35%" alt="Generic placeholder image">
+        </div>
         <div class="col-md-7 col-md-push-5">
             <h2 class="featurette-heading">About me.</h2>
             <p class="lead">Computer Engineer</p>
@@ -37,9 +40,6 @@
             	<li>Code Monkey</li>
             	<li>Hardware Nerd</li>
             </ul>
-        </div>
-        <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-fluid center-block" src="me.jpg" height="35%" width="35%" alt="Generic placeholder image">
         </div>
     </div>
 </div>
