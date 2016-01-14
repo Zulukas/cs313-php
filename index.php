@@ -16,8 +16,8 @@
       		<a class="navbar-brand" href="#">Kevin Andres - CS 313</a>
     	</div>
 		<ul class="nav navbar-nav">
-  			<li class="active"><a href="#">Home</a></li>
-  			<li><a href="#">Assignments</a></li>
+  			<li class="active"><a href="index.php">Home</a></li>
+  			<li><a href="assignments.php">Assignments</a></li>
 		</ul>
 	</div>
 </nav>
