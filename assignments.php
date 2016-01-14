@@ -32,7 +32,7 @@
     		<li id="r1"><a href="#">Survey<a></li>
     		<script type="text/javascript">
     		var r1=document.getElementById("r1");
-    		var myRainbowSpan = new myRainbowSpan(r1, 0, 360, 255, 50, 18);
+    		var myRainbowSpan = new RainbowSpan(r1, 0, 360, 255, 50, 18);
     		myRainbowSpan.timer = window.setInterval("myRainbowSpan.moveRainbow()", myRainbowSpan.speed);
     		</script>
     	</ul>
