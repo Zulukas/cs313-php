@@ -39,7 +39,7 @@
             </ul>
         </div>
         <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-fluid center-block" src="me.jpg" height="45%" width="45%" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid center-block" src="me.jpg" height="35%" width="35%" alt="Generic placeholder image">
         </div>
     </div>
 </div>
