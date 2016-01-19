@@ -30,7 +30,7 @@
 
     <div class="row featurette">
     	<ul>
-    		<li><a href="survey.php">Survey<a></li>
+    		<li><a href="week03/survey.php">Survey<a></li>
     	</ul>
     </div>
 </div>
