@@ -44,7 +44,7 @@
 				<input type="radio" name="rice" value="Cilantro Rice"> Cilantro Rice<br>
 				<input type="radio" name="rice" value="White Rice"> Plain Ole' White Rice<br>
 				<input type="radio" name="rice" value="Brown Rice"> Brown Rice<br>
-				<input type="radio" name="rice" value="None"> No Rice<br>
+				<input type="radio" name="rice" value="No Rice"> No Rice<br>
 				<br>
 
 				<h2>Favorite Kind of Beans</h2>
@@ -70,7 +70,7 @@
 				<input type="radio" name="tomato_stuff" value="Plain"> Plain old chopped up tomatoes<br>
 				<input type="radio" name="tomato_stuff" value="Pico de Gallo"> Pico de Gallo<br>
 				<input type="radio" name="tomato_stuff" value="Salsa"> Salsa-tized!<br>
-				<input type="radio" name="tomato_stuff" value="None"> No tomatoes!<br>
+				<input type="radio" name="tomato_stuff" value="No Tomato"> No tomatoes!<br>
 				<br>
 				
 				<h2>Extra Fixin's</h2>
