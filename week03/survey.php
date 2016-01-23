@@ -1,5 +1,11 @@
-<!DOCTYPE html>
+<?php 
+if (isset($_COOKIE["has_voted"])) {
+	header("Location: results.php");
+	exit();
+}
+?>
 
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Awesome.com</title>
@@ -85,7 +91,7 @@
 				<input type="checkbox" name="fixings[]" value="Onions"> Onions<br>
 				<br>
 
-				<button>Submit</button>
+				<button name="submit" value="submitted">Submit</button>
 				<br>
 				<br>
 				<br>
