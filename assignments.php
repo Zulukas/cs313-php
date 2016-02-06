@@ -17,12 +17,12 @@
       		<a class="navbar-brand" href="index.php">Kevin Andres - CS 313</a>
     	</div>
 		<ul class="nav navbar-nav">
-  			<li class="active"><a href="index.php">Home</a></li>
-  			<li><a href="assignments.php">Assignments</a></li>
+  			<li><a href="index.php">Home</a></li>
+  			<li class="active"><a href="assignments.php">Assignments</a></li>
 		</ul>
 	</div>
 </nav>
-  
+
 <div class="container">
 	<h3>CS 313 Assignments</h3>
 
@@ -31,6 +31,7 @@
     <div class="row featurette">
     	<ul>
     		<li><a href="week03/survey.php">Survey<a></li>
+        <li><a href="week05/login.php">MySQL Project</a></li>
     	</ul>
     </div>
 </div>
