@@ -1,3 +1,25 @@
+<?php
+
+try
+{
+	$user = 'php';
+	$password = 'foo';
+	$db = new PDO('mysql:host=127.0.0.1; dbname=php_project', $user, $password);
+}
+catch (PDOEXception $ex)
+{
+	echo 'ERROR: ' . $ex->getMessage();
+	die();
+}
+
+foreach ($db->query('SELECT username, password FROM user') as $row)
+{
+	echo 'user: ' . $row['username'];
+	echo ' password: ' . $row['password'];
+	echo '<br/>';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

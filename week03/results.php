@@ -1,3 +1,12 @@
+<?php
+$VISIT_KEY="Visit Count";
+
+if (isset($_COOKIE[$VISIT_KEY]) {
+	$visitCount = $_COOKIE[$VISIT_KEY] + 1;
+}
+setcookie($VISIT_KEY, 1);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +23,11 @@
 <?php
 //The name of the file containg previous results.
 $resultsfile = "surveyresults.dat";
+$jsonfile = "results.json";
 
 //Opens the file for appending (file must already exist).
 $fh = fopen($resultsfile, 'a');
+$jf = fopen($jsonfile, 'w');
 
 //Get the user's input
 $fixings = $_POST["fixings"];
@@ -58,55 +69,67 @@ $meats = array(
 	"Vegetarian" => substr_count($content, "Vegetarian")
 );
 
+$alldata = array();
+$alldata['Meats'] = $meats;
+
+fwrite($jf, json_encode($alldata))
+
 print_r($meats);
 
-$rices = array(
-	"Cilantro Rice" => substr_count($content, "Cilantro Rice"),
-	"Spanish Rice" => substr_count($content, "Spanish Rice"),
-	"White Rice" => substr_count($content, "White Rice"),
-	"Brown Rice" => substr_count($content, "Brown Rice"),
-	"No Rice" => substr_count($content, "No Rice")
-);
+// $rices = array(
+// 	"Cilantro Rice" => substr_count($content, "Cilantro Rice"),
+// 	"Spanish Rice" => substr_count($content, "Spanish Rice"),
+// 	"White Rice" => substr_count($content, "White Rice"),
+// 	"Brown Rice" => substr_count($content, "Brown Rice"),
+// 	"No Rice" => substr_count($content, "No Rice")
+// );
 
-print_r($rices);
+// print_r($rices);
 
-//This may cause issues with the currently existing beans variable
-$beans = array(
-	"Refried Beans" => substr_count($content, "Refried Beans"),
-	"Black Beans" => substr_count($content, "Black Beans"),
-	"Pinto Beans" => substr_count($content, "Pinto Beans"),
-	"No Beans" => substr_count($content, "No Beans")
-);
+// //This may cause issues with the currently existing beans variable
+// $beans = array(
+// 	"Refried Beans" => substr_count($content, "Refried Beans"),
+// 	"Black Beans" => substr_count($content, "Black Beans"),
+// 	"Pinto Beans" => substr_count($content, "Pinto Beans"),
+// 	"No Beans" => substr_count($content, "No Beans")
+// );
 
-print_r($beans);
+// print_r($beans);
 
-$mediums = array(
-	"Thick Tortilla" => substr_count($content, "Thick Tortilla"),
-	"Thin Tortilla" => substr_count($content, "Thin Tortilla"),
-	"Salad" => substr_count($content, "Salad")	
-);
+// $mediums = array(
+// 	"Thick Tortilla" => substr_count($content, "Thick Tortilla"),
+// 	"Thin Tortilla" => substr_count($content, "Thin Tortilla"),
+// 	"Salad" => substr_count($content, "Salad")	
+// );
 
-print_r($beans);
+// print_r($beans);
 
-//This may cause issues with the currently existing beans variable
-$tomato_stuff = array(
-	"Plain" => substr_count($content, "Plain"),
-	"Pico de Gallo" => substr_count($content, "Pico de Gallo"),
-	"Salsa" => substr_count($content, "Salsa")	
-);
+// //This may cause issues with the currently existing beans variable
+// $tomato_stuff = array(
+// 	"Plain" => substr_count($content, "Plain"),
+// 	"Pico de Gallo" => substr_count($content, "Pico de Gallo"),
+// 	"Salsa" => substr_count($content, "Salsa")	
+// );
 
-print_r($tomato_stuff);
+// print_r($tomato_stuff);
 
-$fixings = array(
-	"Lettuce" => substr_count($content, "Lettuce"),
-	"Sour Cream" => substr_count($content, "Sour Cream"),
-	"Guacamole" => substr_count($content, "Guacamole"),
-	"Cilantro" => substr_count($content, "Lettuce"),
-	"Lime" => substr_count($content, "Lime"),
-	"Jalapenos" => substr_count($content, "Jalapenos"),
-	"Onions" => substr_count($content, "Onions")
-);
+// $fixings = array(
+// 	"Lettuce" => substr_count($content, "Lettuce"),
+// 	"Sour Cream" => substr_count($content, "Sour Cream"),
+// 	"Guacamole" => substr_count($content, "Guacamole"),
+// 	"Cilantro" => substr_count($content, "Lettuce"),
+// 	"Lime" => substr_count($content, "Lime"),
+// 	"Jalapenos" => substr_count($content, "Jalapenos"),
+// 	"Onions" => substr_count($content, "Onions")
+// );
+
+$json_data = array();
+$json_data['meats'] = $meats;
+
 print_r($fixings);
+fwrite($jf, json_encode($meats));//, json_encode($rices), json_encode($beans), json_encode($mediums), json_encode($tomato_stuff), json_encode($fixings));
+fclose($jf);
+fclose($fh);
 
 ?>
 </body>
