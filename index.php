@@ -1,25 +1,3 @@
-<?php
-
-try
-{
-	$user = 'php';
-	$password = 'foo';
-	$db = new PDO('mysql:host=127.0.0.1; dbname=php_project', $user, $password);
-}
-catch (PDOEXception $ex)
-{
-	echo 'ERROR: ' . $ex->getMessage();
-	die();
-}
-
-foreach ($db->query('SELECT username, password FROM user') as $row)
-{
-	echo 'user: ' . $row['username'];
-	echo ' password: ' . $row['password'];
-	echo '<br/>';
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +21,7 @@ foreach ($db->query('SELECT username, password FROM user') as $row)
 		</ul>
 	</div>
 </nav>
-  
+
 <div class="container">
 	<h3>Kevin Andres - CS 313 Homepage</h3>
 
@@ -75,19 +53,3 @@ foreach ($db->query('SELECT username, password FROM user') as $row)
 
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<title>My first PHP page</title>
-	</head>
-	<body>
-		<div>
-			This is a pretty awesome page, bossman.
-
-
-
-		</div>
-	</body>
-</html> -->
