@@ -31,7 +31,7 @@ function get_coordinates($city, $street, $province)
 
 function GetDrivingDistance($lat1, $lat2, $long1, $long2)
 {
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$lat1.",".$long1."&destinations=".$lat2.",".$long2."&mode=driving&language=pl-PL";
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$lat1.",".$long1."&destinations=".$lat2.",".$long2."&mode=driving&language=en-US";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -50,44 +50,37 @@ function GetDrivingDistance($lat1, $lat2, $long1, $long2)
 function parseAddress($address)
 {
 	$parts = explode(", ", $address);
+
+	$stateparts = explode(" ", $parts[2]);
+	$parts[2] = $stateparts[0];
+
 	return $parts;
 }
 
-$coordinates1 = get_coordinates('Tychy', 'Jana Pawła II', 'Śląskie');
-$coordinates2 = get_coordinates('Lędziny', 'Lędzińska', 'Śląskie');
-if ( !$coordinates1 || !$coordinates2 )
-{
-    echo 'Bad address.';
-}
-else
-{
-    $dist = GetDrivingDistance($coordinates1['lat'], $coordinates2['lat'], $coordinates1['long'], $coordinates2['long']);
-    echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
-}
-
-$addr1 = "1521 1st Ave, Seattle, WA";
-$addr2 = "1301 Alaskan Way, Seattle, WA";
-
-$parts1 = parseAddress($addr1);
-$parts2 = parseAddress($addr2);
-
-// $coord1 = get_coordinates("Seattle", "1521 1st Ave", "Washington");
-
-$coord1 = get_coordinates($parts1[1], $parts1[0], $parts1[2]);
-$coord2 = get_coordinates($parts2[1], $parts2[0], $parts2[2]);
-
-echo $parts1[1] . " - " . $parts1[0] . " - " . $parts1[2] . "<br>";
-echo $parts2[1] . " - " . $parts2[0] . " - " . $parts2[2] . "<br>";
-
-if ( !$coord1 || !$coord2 )
-{
-    echo 'Bad address.';
-}
-else
-{
-    $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
-    echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
-}
+//Test code for the Distance Matrix API
+// $addr1 = "1521 1st Ave, Seattle, WA";
+// $addr2 = "1301 Alaskan Way, Seattle, WA";
+//
+// $parts1 = parseAddress($addr1);
+// $parts2 = parseAddress($addr2);
+//
+// // $coord1 = get_coordinates("Seattle", "1521 1st Ave", "Washington");
+//
+// $coord1 = get_coordinates($parts1[1], $parts1[0], $parts1[2]);
+// $coord2 = get_coordinates($parts2[1], $parts2[0], $parts2[2]);
+//
+// echo $parts1[1] . " - " . $parts1[0] . " - " . $parts1[2] . "<br>";
+// echo $parts2[1] . " - " . $parts2[0] . " - " . $parts2[2] . "<br>";
+//
+// if ( !$coord1 || !$coord2 )
+// {
+//     echo 'Bad address.';
+// }
+// else
+// {
+//     $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
+//     echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
+// }
 
 session_start();
 
@@ -101,6 +94,8 @@ $is_admin = 0;
 $SQLuser = 'php';
 $SQLpassword = 'foo';
 $server = '127.3.232.130:3306';
+
+$db = "";
 
 try //All SQL related stuff goes in this try loop.
 {
@@ -117,6 +112,14 @@ try //All SQL related stuff goes in this try loop.
 	$orgData = $db->query($orgQuery);
 	$orgRow = $orgData->fetch();
 	$orgName = $orgRow["name"];
+
+	$delQuery = "SELECT * FROM deliveries";
+
+	if (!$is_admin) {
+		$delQuery .= " WHERE id=$userOrgID;";
+	}
+
+	$delData = $db->query($delQuery);
 }
 catch (PDOException $ex)
 {
@@ -172,13 +175,48 @@ catch (PDOException $ex)
 	</nav>
 
 	<div class="container">
-        <h3>Coming Soon!</h3>
-		<hr class="featurette-divider">
+<?php
+foreach ($delData as $row) {
+	$parts = parseAddress($row["pick_up_location"]);
+	$coord1 = get_coordinates($parts[1], $parts[0], $parts[2]);
+	$parts = parseAddress($row["drop_off_location"]);
+	$coord2 = get_coordinates($parts[1], $parts[0], $parts[2]);
 
-	    <div class="row featurette">
-	        <div class="col-md-7 col-md-push-5">
-	        </div>
-	        <div class="col-md-5 col-md-pull-7">
-	        </div>
-	    </div>
+	$distanceKM = "";
+	$miles = "";
+	$distanceMI = "";
+	if ( !$coord1 || !$coord2 )
+	{
+	    $distanceKM = 'Bad address(es).';
+			$distanceMI = $distanceKM;
+	}
+	else
+	{
+	    $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
+			$distanceKM = $dist["distance"];
+			// echo $distanceKM . "<br>";
+			$parts = explode(" ", $distanceKM);
+			$km = str_replace(",", "", $parts[0]);
+			$miles = round($km / 1.6093442, 1);
+			$distanceMI = $miles . " miles";
+			// echo $distanceMI . "<br>";
+	}
+
+	$query = "SELECT billing_address, company_rate FROM organizations WHERE id=" . $row["org_id"] . ";";
+	$data = $db->query($query);
+	$datarow = $data->fetch();
+	$billing_address = $datarow["billing_address"];
+	$company_rate = $datarow["company_rate"];
+
+	echo "<table class=\"table\" style=\"width: 800px\">";
+	echo "<tr><td>Invoice #" . $row["id"] . "</td><td></td></tr>";
+	echo "<tr><td>Billing Address: " . $billing_address . "</td><td>Billing Date: " . $row["billing_date"] . "</td></tr>";
+	echo "<tr><td>Pick-up Location: " . $row["pick_up_location"] . "</td><td>Drop-off Location: " . $row["drop_off_location"] . "</td></tr>";
+	echo "<tr><td>Total Distance - " . $distanceKM . " or " . $distanceMI . "</td><td></td></tr>";
+	echo "<tr><td>Base Delivery Rate: $150</td><td></td></tr>";
+	echo "<tr><td>Rate per Mile: $" . $company_rate . "</td><td></td><tr>";
+	echo "<tr><td>Total: $" . number_format((($miles * $company_rate) + 150), 2) . "</td><td></td></tr>";
+	echo "<tr><td></td><td></td></tr></table><br><br>";
+}
+ ?>
 	</div>
