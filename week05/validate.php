@@ -7,7 +7,7 @@ try
 {
 	$SQLuser = 'php';
 	$SQLpassword = 'foo';
-	$server = 'localhost';
+	$server = '127.3.232.130:3306';
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -18,10 +18,11 @@ try
 		header("Location: login.php");
 	}
 
-	$db = new PDO("mysql:host=$server;dbname=php_project", $SQLuser, $SQLpassword);
+	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$sqlQuery = "SELECT password FROM users WHERE username='" . $username . "' LIMIT 1";
-	
+
 	$answer = $db->query($sqlQuery);
 	$row = $answer->fetch();
 	$result = $row['password'];
@@ -37,7 +38,7 @@ try
 		setcookie("INVALID", 1, time() + 60);
 		header("Location: login.php");
 	}
-	
+
 }
 catch (PDOException $ex)
 {
@@ -50,6 +51,6 @@ catch (PDOException $ex)
 <!DOCTYPE html>
 <html>
 <body>
-	<form method="POST" 
+	<form method="POST"
 </body>
 </html>

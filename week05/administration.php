@@ -11,11 +11,12 @@ $is_admin = 0;
 
 $SQLuser = 'php';
 $SQLpassword = 'foo';
-$server = 'localhost';
+$server = '127.3.232.130:3306';
 
 try //All SQL related stuff goes in this try loop.
 {
-	$db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$userQuery = "SELECT * FROM users WHERE username='$user' LIMIT 1;";
 	$userData = $db->query($userQuery);
@@ -39,15 +40,15 @@ catch (PDOException $ex)
 <html>
 <head>
 	<title>
-		<?php 
+		<?php
 			echo "$orgName ";
-			if ($is_admin) { 
-				echo "Admin"; 
+			if ($is_admin) {
+				echo "Admin";
 			}
-			else { 
-				echo "Client"; 
-			} 
-			echo " Home"; 
+			else {
+				echo "Client";
+			}
+			echo " Home";
 		?>
 	</title>
 	<meta charset="utf-8">
@@ -80,7 +81,7 @@ catch (PDOException $ex)
 			</ul>
 		</div>
 	</nav>
-	  
+
 	<div class="container">
         <h3>Coming Soon!</h3>
 		<hr class="featurette-divider">
@@ -88,7 +89,7 @@ catch (PDOException $ex)
 	    <div class="row featurette">
 	        <div class="col-md-7 col-md-push-5">
 	        </div>
-	        <div class="col-md-5 col-md-pull-7">	      
+	        <div class="col-md-5 col-md-pull-7">
 	        </div>
 	    </div>
 	</div>

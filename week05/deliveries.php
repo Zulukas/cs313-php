@@ -30,11 +30,12 @@ $is_admin = 0;
 
 $SQLuser = 'php';
 $SQLpassword = 'foo';
-$server = 'localhost';
+$server = '127.3.232.130:3306';
 
 try //All SQL related stuff goes in this try loop.
 {
-	$db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$userQuery = "SELECT * FROM users WHERE username='$user' LIMIT 1;";
 	$userData = $db->query($userQuery);
@@ -62,12 +63,12 @@ try //All SQL related stuff goes in this try loop.
 		$deliveryQuery = "SELECT * FROM deliveries WHERE drop_off_time BETWEEN \"$start\" AND \"$end\";";
 		$deliveryData = $db->query($deliveryQuery);
 	}
-	else { //Get all the delivery records for this organization.	
+	else { //Get all the delivery records for this organization.
 		$deliveryQuery = "";
 		if ($is_admin) {
 			if ($mode == "act") {
 				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, pick_up_time, drop_off_time, priority_level, billing_date FROM deliveries";
-			}	
+			}
 			else {
 				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries";
 			}
@@ -80,10 +81,10 @@ try //All SQL related stuff goes in this try loop.
 		}
 		else {
 			if ($mode == "act") {
-				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, pick_up_time, drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";			
+				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, pick_up_time, drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";
 			}
 			else {
-				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";			
+				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";
 			}
 		}
 		// echo $deliveryQuery . "<br>";
@@ -102,15 +103,15 @@ catch (PDOException $ex)
 <html>
 <head>
 	<title>
-		<?php 
+		<?php
 			echo "$orgName ";
-			if ($is_admin) { 
-				echo "Admin"; 
+			if ($is_admin) {
+				echo "Admin";
 			}
-			else { 
-				echo "Client"; 
-			} 
-			echo " Home"; 
+			else {
+				echo "Client";
+			}
+			echo " Home";
 		?>
 	</title>
 	<meta charset="utf-8">
@@ -118,8 +119,8 @@ catch (PDOException $ex)
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">	
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
   	<script>
   	$(function() {
@@ -155,7 +156,7 @@ catch (PDOException $ex)
 			</ul>
 		</div>
 	</nav>
-	  
+
 	<div class="container">
         <h3>DELIVERIES</h3>
 
@@ -190,7 +191,7 @@ catch (PDOException $ex)
 						<input type="submit">
 					</td>
 				</tr>
-			</table>			
+			</table>
         </form>
 
 
@@ -223,22 +224,22 @@ foreach ($deliveryData as $row) {
 		echo "<td>" . $row['pick_up_time'] . "</td>";
 	}
 	else {
-		echo "<td>" . $row['estimated_pick_up_time'] . "</td>";	
+		echo "<td>" . $row['estimated_pick_up_time'] . "</td>";
 	}
 
 	echo "<td>" . $row['drop_off_location'] . "</td>";
-	
+
 	if ($mode == "act") {
 		echo "<td>" . $row['drop_off_time'] . "</td>";
 	}
 	else {
-		echo "<td>" . $row['estimated_drop_off_time'] . "</td>";	
+		echo "<td>" . $row['estimated_drop_off_time'] . "</td>";
 	}
 
 	echo "</tr>";
 }
 ?>
-		
+
 		</table>
 	</div>
 </body>
