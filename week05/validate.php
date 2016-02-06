@@ -18,8 +18,8 @@ try
 		header("Location: login.php");
 	}
 
-	$db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
-	// $db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
+	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$sqlQuery = "SELECT password FROM users WHERE username='" . $username . "' LIMIT 1";
 
