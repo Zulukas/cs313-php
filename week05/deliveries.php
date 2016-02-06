@@ -81,10 +81,10 @@ try //All SQL related stuff goes in this try loop.
 		}
 		else {
 			if ($mode == "act") {
-				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, pick_up_time, drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";
+				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, pick_up_time, drop_off_time, priority_level, billing_date FROM deliveries WHERE org_id=\"$userOrgID\";";
 			}
 			else {
-				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries WHERE id=\"$userOrgID\";";
+				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries WHERE org_id=\"$userOrgID\";";
 			}
 		}
 		// echo $deliveryQuery . "<br>";

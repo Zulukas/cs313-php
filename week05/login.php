@@ -1,22 +1,23 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Login</title>
-	
+
 	<style>
 		#loginbox {
 			border-radius: 5px;
 		    border: 5px solid #000000;
-		    padding: 20px; 
+		    padding: 20px;
 		    width: 260px;
-		    height: 100px; 
+		    height: 100px;
 		    text-align: center;
 		}
 
-		.center {			
+		.center {
 			margin: auto;
 			width: 400px;
-			text-align: center;			
+			text-align: center;
 		}
 
 		.invalid {
@@ -32,16 +33,17 @@
 	</style>
 </head>
 <body>
-<?php 
-	if (isset($_COOKIE["INVALID"])) 
-	{ 
-		echo "<h4 class='invalidMsg'>Invalid username/password</h4>"; 
+<?php
+	if (isset($_COOKIE["INVALID"]))
+	{
+		echo "<h4 class='invalidMsg'>Invalid username/password</h4>";
 	}
 	else
 	{
 		echo "<br><br>";
-	} 
+	}
 ?>
+
 
 	<br>
 	<br>
