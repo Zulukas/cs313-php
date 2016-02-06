@@ -65,14 +65,14 @@ catch (PDOException $ex)
 	      		</a>
 	    	</div>
 			<ul class="nav navbar-nav">
-	  			<li class="active"><a href="home.php">Home</a></li>
+	  			<li><a href="home.php">Home</a></li>
 	  			<li><a href="deliveries.php">Deliveries</a></li>
 	  			<li><a href="invoices.php">Invoices</a></li>
 	  			<li><a href="users.php">Users</a></li>
 
 	  			<?php
 	  				if ($is_admin) {
-	  					echo "\t\t\t\t<li><a href=\"administration.php\">Administration</a></li>";
+	  					echo "\t\t\t\t<li class=\"active\"><a href=\"administration.php\">Administration</a></li>";
 	  				}
 	  			?>
 
@@ -82,7 +82,7 @@ catch (PDOException $ex)
 	</nav>
 	  
 	<div class="container">
-        <h3>Welcome <?php echo "$user"; ?></h3>
+        <h3>Coming Soon!</h3>
 		<hr class="featurette-divider">
 
 	    <div class="row featurette">

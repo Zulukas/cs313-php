@@ -65,7 +65,7 @@ catch (PDOException $ex)
 	      		</a>
 	    	</div>
 			<ul class="nav navbar-nav">
-	  			<li class="active"><a href="home.php">Home</a></li>
+	  			<li class="active"><a href="#">Home</a></li>
 	  			<li><a href="deliveries.php">Deliveries</a></li>
 	  			<li><a href="invoices.php">Invoices</a></li>
 	  			<li><a href="users.php">Users</a></li>
