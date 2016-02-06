@@ -104,8 +104,8 @@ $server = '127.3.232.130:3306';
 
 try //All SQL related stuff goes in this try loop.
 {
-  $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
-	// $db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
+  // $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$userQuery = "SELECT * FROM users WHERE username='$user' LIMIT 1;";
 	$userData = $db->query($userQuery);
