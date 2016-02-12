@@ -30,6 +30,10 @@
 			text-align: center;
 
 		}
+		.center #register {
+			position:absolute;
+			left:400px;
+		}
 	</style>
 </head>
 <body>
@@ -76,6 +80,10 @@
 				<input type="submit">
 			</div>
 		</form>
+		<br />
+		<a href="register.php" id="register">Register User</a>
+		<br />
+		<a href="registerorg.php" id="register">Register Organization</a>
 	</div>
 </body>
 </html>
