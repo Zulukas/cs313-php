@@ -112,6 +112,17 @@
         return false;
     }
 
+    function validateAddress(target) {
+        if ($('#' + target).val().match(/^[0-9a-z,.# ]+$/i)) {
+            return true;
+        }
+
+        $('#' + target).val("");
+        $('#' + target).attr("placeholder", "Invalid address.");
+
+        return false;
+    }
+
     function validatePhoneNumber(target) {
         if ($('#' + target).val().match(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i)) {
             return true;
@@ -151,7 +162,7 @@ else
 
     <div class="col-lg-12 well">
         <div class="row">
-            <form name="form" action="registrationadd.php" method="POST">
+            <form name="form" action="registrationaddorg.php" method="POST">
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-6 form-group">
@@ -162,13 +173,13 @@ else
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Address</label>
-                            <input type="text" id="address" onblur="validateAlphanumeric('address');" placeholder="Enter Address Here.." class="form-control" name="address">
+                            <input type="text" id="address" onblur="validateAddress('address');" placeholder="Enter Address Here.." class="form-control" name="address">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label>Billing Address</label>
-                            <input type="text" id="billing_address" onblur="validateAlphanumeric('billing_address');" placeholder="Enter Billing Address Here.." class="form-control" name="billing_address">
+                            <input type="text" id="billing_address" onblur="validateAddress('billing_address');" placeholder="Enter Billing Address Here.." class="form-control" name="billing_address">
                         </div>
                     </div>
                     <button type="button" onclick="validateInputs();" class="btn btn-lg btn-info">Submit</button>

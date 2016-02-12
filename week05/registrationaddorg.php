@@ -3,12 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$username = $_POST["username"];
-$password = $_POST["password"];
-$first    = $_POST["first"];
-$last     = $_POST["last"];
-$company  = $_POST["company"];
-$phone    = $_POST["phone"];
+$name            = $_POST["name"];
+$address         = $_POST["address"];
+$billing_address = $_POST["billing_address"];
 
 try
 {
@@ -18,13 +15,10 @@ try
     $server = 'localhost';
     $dbname = 'php_project';
 
-	// $username = $_POST['username'];
-	// $password = $_POST['password'];
-
 	$db = new PDO("mysql:host=" .$server . ";dbname=$dbname", $SQLuser, $SQLpassword);
 
     //Check to see if the username is used already...
-	$sqlQuery = "SELECT username FROM users WHERE username='" . $username . "'";
+	$sqlQuery = "SELECT name FROM organizations WHERE name='" . $name . "'";
     $users = $db->query($sqlQuery);
     $userExists = false;
 
@@ -34,26 +28,12 @@ try
     }
 
     if ($userExists) {
-        setcookie("USERNAME_TAKEN", 1, time() + 60);
-		header("Location: register.php");
+        setcookie("COMPANY_NAME_TAKEN", 1, time() + 60);
+		header("Location: registerorg.php");
     }
 
-    $sqlQuery = "SELECT id FROM organizations WHERE name=\"$company\" LIMIT 1;";
-    echo  $sqlQuery . "<br  />";
-    $orgData = $db->query($sqlQuery);
-    $orgRow = $orgData->fetch();
-    $org_id = $orgRow['id'];
-
-    if ($org_id == "") {
-        setcookie("INVALID_COMPANY", 1, time() + 60);
-        header("Location: register.php");
-    }
-
-    $sqlQueryToInsert = "INSERT INTO users (username, password, org_id, firstname, lastname, phone_number) VALUE (\"$username\", \"$password\", $org_id, \"$first\", \"$last\", \"$phone\");";
+    $sqlQueryToInsert = "INSERT INTO organizations (name, address, billing_address, company_rate) VALUE (\"$name\", \"$address\", \"$billing_address\", 4);";
     $users = $db->query($sqlQueryToInsert);
-    // echo $sqlQueryToInsert;
-
-    header("Location: useraddsuccess.html");
 }
 catch (PDOException $ex)
 {
@@ -62,3 +42,13 @@ catch (PDOException $ex)
 }
 
  ?>
+
+ <html>
+ <head>
+     <title>Success!</title>
+ </head>
+ <body>
+     <h1>Success registering user!</h1>
+     <a href="login.php">Login Page</a>
+ </body>
+ </html>

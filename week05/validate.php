@@ -7,7 +7,8 @@ try
 {
 	$SQLuser = 'php';
 	$SQLpassword = 'foo';
-	$server = '127.3.232.130:3306';
+	// $server = '127.3.232.130:3306';
+	$server = 'localhost';
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -17,8 +18,7 @@ try
 		setcookie("INVALID", 1, time() + 60);
 		header("Location: login.php");
 	}
-
-	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
+	
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$sqlQuery = "SELECT password FROM users WHERE username='" . $username . "' LIMIT 1";

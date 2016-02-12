@@ -39,7 +39,6 @@ try
     }
 
     $sqlQuery = "SELECT id FROM organizations WHERE name=\"$company\" LIMIT 1;";
-    echo  $sqlQuery . "<br  />";
     $orgData = $db->query($sqlQuery);
     $orgRow = $orgData->fetch();
     $org_id = $orgRow['id'];
@@ -51,9 +50,6 @@ try
 
     $sqlQueryToInsert = "INSERT INTO users (username, password, org_id, firstname, lastname, phone_number) VALUE (\"$username\", \"$password\", $org_id, \"$first\", \"$last\", \"$phone\");";
     $users = $db->query($sqlQueryToInsert);
-    // echo $sqlQueryToInsert;
-
-    header("Location: useraddsuccess.html");
 }
 catch (PDOException $ex)
 {
@@ -62,3 +58,13 @@ catch (PDOException $ex)
 }
 
  ?>
+
+ <html>
+ <head>
+     <title>Success!</title>
+ </head>
+ <body>
+     <h1>Success registering user!</h1>
+     <a href="login.php">Login Page</a>
+ </body>
+ </html>

@@ -57,31 +57,6 @@ function parseAddress($address)
 	return $parts;
 }
 
-//Test code for the Distance Matrix API
-// $addr1 = "1521 1st Ave, Seattle, WA";
-// $addr2 = "1301 Alaskan Way, Seattle, WA";
-//
-// $parts1 = parseAddress($addr1);
-// $parts2 = parseAddress($addr2);
-//
-// // $coord1 = get_coordinates("Seattle", "1521 1st Ave", "Washington");
-//
-// $coord1 = get_coordinates($parts1[1], $parts1[0], $parts1[2]);
-// $coord2 = get_coordinates($parts2[1], $parts2[0], $parts2[2]);
-//
-// echo $parts1[1] . " - " . $parts1[0] . " - " . $parts1[2] . "<br>";
-// echo $parts2[1] . " - " . $parts2[0] . " - " . $parts2[2] . "<br>";
-//
-// if ( !$coord1 || !$coord2 )
-// {
-//     echo 'Bad address.';
-// }
-// else
-// {
-//     $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
-//     echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
-// }
-
 session_start();
 
 error_reporting(E_ALL);
@@ -93,13 +68,13 @@ $is_admin = 0;
 
 $SQLuser = 'php';
 $SQLpassword = 'foo';
-$server = '127.3.232.130:3306';
+// $server = '127.3.232.130:3306';
+$server = 'localhost';
 
 $db = "";
 
 try //All SQL related stuff goes in this try loop.
 {
-  // $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$userQuery = "SELECT * FROM users WHERE username='$user' LIMIT 1;";
