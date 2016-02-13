@@ -25,16 +25,18 @@ if (!empty($_POST)) {
 }
 
 $user     = $_SESSION['user'];
-$orgName = "NOT FOUND";
+$orgName = $_SESSION['orgname'];
+$orgID = $_SESSION['orgid'];
+
 $is_admin = 0;
 
 $SQLuser = 'php';
 $SQLpassword = 'foo';
-$server = '127.3.232.130:3306';
+// $server = '127.3.232.130:3306';
+$server = 'localhost';
 
 try //All SQL related stuff goes in this try loop.
 {
-	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
 	$userQuery = "SELECT * FROM users WHERE username='$user' LIMIT 1;";
@@ -42,7 +44,6 @@ try //All SQL related stuff goes in this try loop.
 	$userRow = $userData->fetch();
 	$userOrgID = $userRow["org_id"];
 	$is_admin = $userRow["is_admin"];
-	// echo "Is admin? " . $is_admin . "</br>";
 
 	$orgQuery = "SELECT * FROM organizations WHERE id=$userOrgID;";
 	$orgData = $db->query($orgQuery);
@@ -87,10 +88,12 @@ try //All SQL related stuff goes in this try loop.
 				$deliveryQuery = "SELECT id, pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, billing_date FROM deliveries WHERE org_id=\"$userOrgID\";";
 			}
 		}
-		// echo $deliveryQuery . "<br>";
+
+		// $_SESSION['user'] = $user;
+		// $_SESSION['orgid'] = $userOrgID;
+		// $_SESSION['orgname'] = $orgName;
 		$deliveryData = $db->query($deliveryQuery);
 	}
-
 }
 catch (PDOException $ex)
 {
@@ -131,6 +134,16 @@ catch (PDOException $ex)
     	$( "#endingdatepicker" ).datepicker();
   	});
   	</script>
+	<style>
+		a.button {
+			-webkit-appearance: button;
+			-moz-appearance: button;
+			appearance: button;
+
+			text-decoration: none;
+			color: initial;
+		}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -241,6 +254,15 @@ foreach ($deliveryData as $row) {
 ?>
 
 		</table>
+
+
+		<br /><br /><br />
+		<!-- <form action="adddelivery.php<?php echo "?user=$user&orgid=$userOrgID&orgname=$orgName"; ?>" method="POST">
+			<input type="bu" value="Add Delivery"/>
+		</form> -->
+		<a href="adddelivery.php" class="btn btn-default"> Add Delivery </a>
+		<br />
+		<br />
 	</div>
 </body>
 </html>

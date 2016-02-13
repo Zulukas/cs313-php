@@ -18,19 +18,26 @@ try
 		setcookie("INVALID", 1, time() + 60);
 		header("Location: login.php");
 	}
-	
+
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 
-	$sqlQuery = "SELECT password FROM users WHERE username='" . $username . "' LIMIT 1";
+	$sqlQuery = "SELECT password, org_id FROM users WHERE username='" . $username . "' LIMIT 1";
 
 	$answer = $db->query($sqlQuery);
 	$row = $answer->fetch();
 	$result = $row['password'];
 
+	$orgQuery = "SELECT name FROM organizations WHERE id=" . $row['org_id'] . "";
+	$orgData = $db->query($orgQuery);
+	$orgRow = $orgData->fetch();
+	$orgName = $orgRow['name'];
+
 	if ($result == $password) {
 		session_start();
 
 		$_SESSION['user']	= $username;
+		$_SESSION['orgid']  = $row['org_id'];
+		$_SESSION['orgname'] = $orgName;
 
 		header("Location: home.php");
 	}
@@ -39,6 +46,9 @@ try
 		header("Location: login.php");
 	}
 
+	//Update the login date
+	$updateQuery = "UPDATE users SET account_last_login=now() WHERE username=\"" . $username . "\";";
+	$db->query($updateQuery);
 }
 catch (PDOException $ex)
 {

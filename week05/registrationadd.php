@@ -48,7 +48,7 @@ try
         header("Location: register.php");
     }
 
-    $sqlQueryToInsert = "INSERT INTO users (username, password, org_id, firstname, lastname, phone_number) VALUE (\"$username\", \"$password\", $org_id, \"$first\", \"$last\", \"$phone\");";
+    $sqlQueryToInsert = "INSERT INTO users (username, password, org_id, firstname, lastname, phone_number, account_creation_date) VALUE (\"$username\", \"$password\", $org_id, \"$first\", \"$last\", \"$phone\", now());";
     $users = $db->query($sqlQueryToInsert);
 }
 catch (PDOException $ex)

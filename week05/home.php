@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $user     = $_SESSION['user'];
-$orgName = "NOT FOUND";
+$orgName = $_SESSION['orgname'];
+$orgID = $_SESSION['orgid'];
 $is_admin = 0;
 
 $SQLuser = 'php';
@@ -83,7 +84,8 @@ catch (PDOException $ex)
 	</nav>
 
 	<div class="container">
-        <h3>Welcome <?php echo "$user"; ?></h3>
+        <h3>Welcome <?php echo "$user<br />"; ?></h3>
+		<h4>Company: <?php echo "$orgName($orgID)<br />"; ?></h4>
 		<hr class="featurette-divider">
 
 	    <div class="row featurette">
