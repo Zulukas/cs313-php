@@ -3,6 +3,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+function isSanitary($string) {
+	if (!preg_match("/^([A-Za-z0-9_]+)*$/i")) {
+		return FALSE;
+	}
+
+
+}
+
 try
 {
 	$SQLuser = 'php';
@@ -17,6 +25,8 @@ try
 		setcookie("INVALID", 1, time() + 60);
 		header("Location: login.php");
 	}
+
+
 
 	// $db = new PDO("mysql:host=localhost;dbname=php_project", $SQLuser, $SQLpassword);
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);

@@ -6,7 +6,7 @@
 function get_coordinates($city, $street, $province)
 {
     $address = urlencode($city.','.$street.','.$province);
-    $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Poland";
+    $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=UnitedStates";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -49,38 +49,38 @@ function GetDrivingDistance($lat1, $lat2, $long1, $long2)
 
 function parseAddress($address)
 {
-	$parts = explode(", ", $address);
+	$parts = explode(", ", $address); //Blow up an address string into street, city, state
 
-	$stateparts = explode(" ", $parts[2]);
-	$parts[2] = $stateparts[0];
+	$stateparts = explode(" ", $parts[2]);	//Remove zip codes
+	$parts[2] = $stateparts[0];				//Replace the state with the cleaned up state
 
 	return $parts;
 }
 
-//Test code for the Distance Matrix API
-// $addr1 = "1521 1st Ave, Seattle, WA";
-// $addr2 = "1301 Alaskan Way, Seattle, WA";
-//
-// $parts1 = parseAddress($addr1);
-// $parts2 = parseAddress($addr2);
-//
-// // $coord1 = get_coordinates("Seattle", "1521 1st Ave", "Washington");
-//
-// $coord1 = get_coordinates($parts1[1], $parts1[0], $parts1[2]);
-// $coord2 = get_coordinates($parts2[1], $parts2[0], $parts2[2]);
-//
-// echo $parts1[1] . " - " . $parts1[0] . " - " . $parts1[2] . "<br>";
-// echo $parts2[1] . " - " . $parts2[0] . " - " . $parts2[2] . "<br>";
-//
-// if ( !$coord1 || !$coord2 )
-// {
-//     echo 'Bad address.';
-// }
-// else
-// {
-//     $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
-//     echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
-// }
+// Test code for the Distance Matrix API
+$addr1 = "1521 1st Ave, Seattle, WA";
+$addr2 = "1301 Alaskan Way, Seattle, WA";
+
+$parts1 = parseAddress($addr1);
+$parts2 = parseAddress($addr2);
+
+// $coord1 = get_coordinates("Seattle", "1521 1st Ave", "Washington");
+
+$coord1 = get_coordinates($parts1[1], $parts1[0], $parts1[2]);
+$coord2 = get_coordinates($parts2[1], $parts2[0], $parts2[2]);
+
+echo $parts1[1] . " - " . $parts1[0] . " - " . $parts1[2] . "<br>";
+echo $parts2[1] . " - " . $parts2[0] . " - " . $parts2[2] . "<br>";
+
+if ( !$coord1 || !$coord2 )
+{
+    echo 'Bad address.';
+}
+else
+{
+    $dist = GetDrivingDistance($coord1['lat'], $coord2['lat'], $coord1['long'], $coord2['long']);
+    echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
+}
 
 session_start();
 
