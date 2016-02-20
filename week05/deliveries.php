@@ -251,6 +251,11 @@ foreach ($deliveryData as $row) {
 			<input type="bu" value="Add Delivery"/>
 		</form> -->
 		<a href="adddelivery.php" class="btn btn-default"> Add Delivery </a>
+		<?php
+			if ($is_admin) {
+				echo "<a href=\"updatedelivery.php\" class=\"btn btn-default\"> Update Delivery </a>";
+			}
+		?>
 		<br />
 		<br />
 	</div>

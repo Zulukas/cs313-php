@@ -9,7 +9,14 @@ $user     = $_SESSION['user'];
 $orgName = "NOT FOUND";
 $is_admin = 0;
 
+<<<<<<< HEAD
 require "serverinfo.php";
+=======
+$SQLuser = 'php';
+$SQLpassword = 'foo';
+$server = '127.3.232.130:3306';
+// $server = 'localhost';
+>>>>>>> 9782ce2819dd154a0a6a16ef8e8c539dbf16bbe7
 
 try //All SQL related stuff goes in this try loop.
 {
@@ -69,7 +76,7 @@ catch (PDOException $ex)
 	  			<li><a href="home.php">Home</a></li>
 	  			<li><a href="deliveries.php">Deliveries</a></li>
 	  			<li><a href="invoices.php">Invoices</a></li>
-	  			<li class="active"><a href="#">Users</a></li>	  		
+	  			<li class="active"><a href="#">Users</a></li>
 	  			<li><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>

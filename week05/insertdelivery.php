@@ -42,6 +42,9 @@ try
 
     $query = "INSERT INTO deliveries (pick_up_location, drop_off_location, estimated_pick_up_time, estimated_drop_off_time, priority_level, org_id, billing_date) VALUES (\"$pickuploc\", \"$dropoffloc\", \"$pickupdate\", \"$dropoffdate\", $priority[0], $orgID, now());";
     echo "<br />" . $query;
+    $db->query($query);
+
+    header("Location: deliveries.php");
 }
 catch (PDOException $ex)
 {

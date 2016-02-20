@@ -125,7 +125,6 @@ $orgID = $_SESSION['orgid'];
                 return false;
 
             var val = $("#radio:checked").val();
-            alert(val);
 
             if (val == 1 || val == 2 || val == 3 || val == 4)
                 document.forms["form"].submit();
