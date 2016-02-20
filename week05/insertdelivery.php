@@ -36,11 +36,7 @@ switch ($priority[0])
 
 try
 {
-	$SQLuser = 'php';
-	$SQLpassword = 'foo';
-	// $server = '127.3.232.130:3306';
-	$server = 'localhost';
-
+	require "serverinfo.php";
 
 	$db = new PDO("mysql:host=" .$server . ";dbname=php_project", $SQLuser, $SQLpassword);
 

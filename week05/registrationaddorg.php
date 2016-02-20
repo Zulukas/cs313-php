@@ -9,10 +9,7 @@ $billing_address = $_POST["billing_address"];
 
 try
 {
-	$SQLuser = 'php';
-	$SQLpassword = 'foo';
-	$server = '127.3.232.130:3306';
-    // $server = 'localhost';
+	require "serverinfo.php";
     $dbname = 'php_project';
 
 	$db = new PDO("mysql:host=" .$server . ";dbname=$dbname", $SQLuser, $SQLpassword);

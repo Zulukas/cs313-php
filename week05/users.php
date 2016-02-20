@@ -9,10 +9,7 @@ $user     = $_SESSION['user'];
 $orgName = "NOT FOUND";
 $is_admin = 0;
 
-$SQLuser = 'php';
-$SQLpassword = 'foo';
-$server = '127.3.232.130:3306';
-// $server = 'localhost';
+require "serverinfo.php";
 
 try //All SQL related stuff goes in this try loop.
 {
@@ -72,14 +69,7 @@ catch (PDOException $ex)
 	  			<li><a href="home.php">Home</a></li>
 	  			<li><a href="deliveries.php">Deliveries</a></li>
 	  			<li><a href="invoices.php">Invoices</a></li>
-	  			<li class="active"><a href="#">Users</a></li>
-
-	  			<?php
-	  				if ($is_admin) {
-	  					echo "\t\t\t\t<li><a href=\"administration.php\">Administration</a></li>";
-	  				}
-	  			?>
-
+	  			<li class="active"><a href="#">Users</a></li>	  		
 	  			<li><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>

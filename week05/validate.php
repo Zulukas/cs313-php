@@ -5,10 +5,7 @@ ini_set('display_errors', 1);
 
 try
 {
-	$SQLuser = 'php';
-	$SQLpassword = 'foo';
-	$server = '127.3.232.130:3306';
-	// $server = 'localhost';
+	require "serverinfo.php";
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];

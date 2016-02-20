@@ -66,10 +66,7 @@ $user     = $_SESSION['user'];
 $orgName = "NOT FOUND";
 $is_admin = 0;
 
-$SQLuser = 'php';
-$SQLpassword = 'foo';
-$server = '127.3.232.130:3306';
-// $server = 'localhost';
+require "serverinfo.php";
 
 $db = "";
 
@@ -137,14 +134,7 @@ catch (PDOException $ex)
 	  			<li><a href="deliveries.php">Deliveries</a></li>
 	  			<li class="active"><a href="#">Invoices</a></li>
 	  			<li><a href="users.php">Users</a></li>
-
-	  			<?php
-	  				if ($is_admin) {
-	  					echo "\t\t\t\t<li><a href=\"administration.php\">Administration</a></li>";
-	  				}
-	  			?>
-
-	  			<li><a href="logout.php">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>
 	</nav>

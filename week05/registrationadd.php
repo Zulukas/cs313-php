@@ -12,10 +12,7 @@ $phone    = $_POST["phone"];
 
 try
 {
-	$SQLuser = 'php';
-	$SQLpassword = 'foo';
-	$server = '127.3.232.130:3306';
-    // $server = 'localhost';
+	require "serverinfo.php";
     $dbname = 'php_project';
 
 	// $username = $_POST['username'];

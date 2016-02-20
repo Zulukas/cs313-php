@@ -30,10 +30,7 @@ $orgID = $_SESSION['orgid'];
 
 $is_admin = 0;
 
-$SQLuser = 'php';
-$SQLpassword = 'foo';
-$server = '127.3.232.130:3306';
-// $server = 'localhost';
+require "serverinfo.php";
 
 try //All SQL related stuff goes in this try loop.
 {
@@ -158,14 +155,7 @@ catch (PDOException $ex)
 	  			<li class="active"><a href="#">Deliveries</a></li>
 	  			<li><a href="invoices.php">Invoices</a></li>
 	  			<li><a href="users.php">Users</a></li>
-
-	  			<?php
-	  				if ($is_admin) {
-	  					echo "\t\t\t\t<li><a href=\"#\">Administration</a></li>";
-	  				}
-	  			?>
-
-	  			<li><a href="logout.php">Logout</a></li>
+				<li><a href="logout.php">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
